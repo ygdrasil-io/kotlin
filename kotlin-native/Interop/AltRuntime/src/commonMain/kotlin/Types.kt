@@ -2,6 +2,7 @@
  * Copyright 2010-2023 JetBrains s.r.o. and Kotlin Programming Language contributors.
  * Use of this source code is governed by the Apache 2.0 license that can be found in the license/LICENSE.txt file.
  */
+package kotlinx.cinterop
 
 /**
  * The entity which has an associated native pointer.
@@ -16,6 +17,10 @@ public open class NativePointed internal constructor(rawPtr: NonNullNativePtr) {
     public var rawPtr: NativePtr = rawPtr.toNativePtr()
         internal set
 }
+
+@ExperimentalForeignApi
+public inline val nativeNullPtr: NativePtr
+    get() = NativePtr.NULL
 
 // `null` value of `NativePointed?` is mapped to `nativeNullPtr`.
 @ExperimentalForeignApi

@@ -35,5 +35,11 @@ kotlin {
                 implementation(project(":kotlin-stdlib"))
             }
         }
+
+        nativeMain {
+            kotlin {
+                srcDir("$rootDir/kotlin-native/runtime/src/main/kotlin")
+            }
+        }
     }
 }
