@@ -245,8 +245,7 @@ public abstract class CVariable(rawPtr: NativePtr) : CPointed(rawPtr) {
      * @param align the alignments in bytes that is enough for this data type.
      * It may be greater than actually required for simplicity.
      */
-    @Deprecated("Use sizeOf<T>() or alignOf<T>() instead.")
-    public open class Type(public val size: Long, public val align: Int) {
+    internal open class Type(public val size: Long, public val align: Int) {
 
         init {
             require(size % align == 0L)

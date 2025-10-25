@@ -18,6 +18,9 @@ actual class NativePtr {
         actual val NULL: NativePtr
             get() = TODO("Not yet implemented")
     }
+
+    @TypedIntrinsic(IntrinsicType.INTEROP_NATIVE_PTR_PLUS_LONG)
+    public external operator fun plus(offset: Long): kotlin.native.internal.NativePtr
 }
 
 actual class NonNullNativePtr {
@@ -28,3 +31,12 @@ actual class NonNullNativePtr {
 }
 
 @PublishedApi actual internal fun <T, R> T.reinterpret(): R = kotlin.native.internal.reinterpret()
+
+/**
+ * Performs type cast of the native pointer to given interop type, including null values.
+ *
+ * @param T must not be abstract
+ */
+@ExperimentalForeignApi
+@TypedIntrinsic(IntrinsicType.IDENTITY)
+actual external fun <T : NativePointed> interpretNullablePointed(ptr: NativePtr): T?

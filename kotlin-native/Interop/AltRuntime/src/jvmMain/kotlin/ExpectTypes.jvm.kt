@@ -9,6 +9,8 @@ actual class NativePtr {
         actual val NULL: NativePtr
             get() = TODO("Not yet implemented")
     }
+
+    public operator fun plus(offset: Long): NativePtr = TODO("Not yet implemented")
 }
 
 actual class NonNullNativePtr {
@@ -20,3 +22,17 @@ actual class NonNullNativePtr {
 
 // Reinterprets this value from T to R having the same binary representation (e.g. to unwrap inline class).
 @PublishedApi actual internal fun <T, R> T.reinterpret(): R = this as R
+
+/**
+ * Performs type cast of the native pointer to given interop type, including null values.
+ *
+ * @param T must not be abstract
+ */
+@ExperimentalForeignApi
+actual fun <T : NativePointed> interpretNullablePointed(ptr: NativePtr): T? {
+    if (ptr == nativeNullPtr) {
+        return null
+    } else {
+        TODO("Not yet implemented")
+    }
+}
